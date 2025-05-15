@@ -1,9 +1,9 @@
 Feature: Login functionality
 
-Scenario Outline: Login with valid credentials
-Given User navigates to login page
+Scenario Outline: User login with valid credentials
+Given User navigates to home page
 When User clicks on Sign In with Email button
-When User enters valid email address <username> into email field
+And User enters valid email address <username> into email field
 And User clicks on Continue
 And User enters valid password <password> into password field
 And User clicks on Continue

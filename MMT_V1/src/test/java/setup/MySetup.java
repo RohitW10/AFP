@@ -5,6 +5,8 @@ import java.util.Properties;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
 
 import factory.DriverFactory;
 import io.cucumber.java.After;
@@ -14,8 +16,9 @@ import utils.ConfigReader;
 
 public class MySetup {
 	
-	WebDriver driver;
+	public static WebDriver driver;
 	
+//	@BeforeClass(alwaysRun = true)
 	@Before
 	public void setup() {
 		
@@ -23,23 +26,26 @@ public class MySetup {
 		DriverFactory.initializeBrowser(prop.getProperty("browser")); // sets static driver internally
 		driver = DriverFactory.getDriver();
 		driver.get(prop.getProperty("url"));
+		System.out.println("WebDriver initialized and navigated to: " + prop.getProperty("url"));
+
 		
 	}
 	
+//	@AfterClass(alwaysRun = true)
+//	public void tearDown(Scenario scenario) {
 	@After
-	public void tearDown(Scenario scenario) {
+	public void tearDown() {
+
+		driver = DriverFactory.getDriver();
+//		String scenarioName = scenario.getName().replaceAll(" ","_");
+//		
+//		if(scenario.isFailed()) {
+//			
+//			byte[] srcScreenshot = ((TakesScreenshot)driver).getScreenshotAs(OutputType.BYTES);
+//			scenario.attach(srcScreenshot,"image/png", scenarioName);
+//		}
 		
-		String scenarioName = scenario.getName().replaceAll(" ","_");
-		
-		if(scenario.isFailed()) {
-			
-			byte[] srcScreenshot = ((TakesScreenshot)driver).getScreenshotAs(OutputType.BYTES);
-			scenario.attach(srcScreenshot,"image/png", scenarioName);
-		}
-		
-		if (driver != null) {
-            driver.quit();
-        }		
+		DriverFactory.quitDriver();
 	
 	}
 

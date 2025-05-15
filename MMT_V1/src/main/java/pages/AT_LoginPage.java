@@ -8,12 +8,12 @@ import org.openqa.selenium.support.PageFactory;
 import utils.CommonUtils;
 import utils.ElementUtils;
 
-public class MMT_LoginPage {
+public class AT_LoginPage {
 
 	WebDriver driver;
 	private ElementUtils elementUtils;
 	
-	public MMT_LoginPage(WebDriver driver)
+	public AT_LoginPage(WebDriver driver)
 	{
 		this.driver = driver;
 		PageFactory.initElements(driver, this);

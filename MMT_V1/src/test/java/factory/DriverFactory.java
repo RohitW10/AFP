@@ -15,45 +15,64 @@ import utils.CommonUtils;
 
 public class DriverFactory {
 
-	public static WebDriver driver = null;
-
+	private static ThreadLocal<WebDriver> tlDriver = new ThreadLocal<>();
+	
 	public static WebDriver initializeBrowser(String browserName) {
-
-		if (browserName.equals("chrome")) {
+		
+		WebDriver driver;
+		
+		switch(browserName.toLowerCase()) {
+		
+		case "chrome": 
 			WebDriverManager.chromedriver().setup();
-			ChromeOptions options = new ChromeOptions();
-			options.addArguments("--incognito", "--disable-notifications", "--start-maximized");
-			driver = new ChromeDriver(options);
-		} else if (browserName.equals("edge")) {
+			ChromeOptions chromeOpns = new ChromeOptions();
+			chromeOpns.addArguments("--incognito", "--disable-notifications", "--start-maximized");
+			driver = new ChromeDriver(chromeOpns);
+			break;
+		case "edge":
 			WebDriverManager.edgedriver().setup();
-			EdgeOptions options = new EdgeOptions();
-			options.addArguments("--inprivate", "--disable-notifications", "start-maximized");
-			driver = new EdgeDriver(options);
-		} else if (browserName.equals("firefox")) {
+			EdgeOptions edgeOpns = new EdgeOptions();
+			edgeOpns.addArguments("--inprivate", "--disable-notifications", "start-maximized");
+			driver = new EdgeDriver(edgeOpns);
+			break;
+		case "firefox":
 			WebDriverManager.firefoxdriver().setup();
-			FirefoxOptions options = new FirefoxOptions();
-			options.addArguments("--private", "--disable-notifications", "--start-maximized");
-			driver = new FirefoxDriver(options);
-		} else if (browserName.equals("safari"))
+			FirefoxOptions firefoxOpns = new FirefoxOptions();
+			firefoxOpns.addArguments("--private", "--disable-notifications", "--start-maximized");
+			driver = new FirefoxDriver(firefoxOpns);
+			break;
+		case "safari":
 			driver = new SafariDriver();
-		 else {
+			break;
+		default:
 	            throw new IllegalArgumentException("Unsupported browser: " + browserName);
-	        }
+	        
+		}
 
 		driver.manage().deleteAllCookies();
 		driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(CommonUtils.PAGE_LOAD_TIME));
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(CommonUtils.IMPLICIT_WAIT_TIME));
-
-		return driver;
+		tlDriver.set(driver);
+		
+		return getDriver();
 
 	}
 
 	public static WebDriver getDriver() {
-
+		
+		WebDriver driver = tlDriver.get();
 		if (driver == null) {
             // fallback or error
             throw new RuntimeException("WebDriver is not initialized. Call initializeBrowser() first.");
         }
         return driver;
+	}
+	
+	public static void quitDriver()
+	{
+		WebDriver driver = tlDriver.get();
+		if(driver != null)
+			driver.quit();
+			tlDriver.remove();
 	}
 }

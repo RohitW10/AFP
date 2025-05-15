@@ -5,20 +5,20 @@ import org.junit.Assert;
 
 import factory.DriverFactory;
 import io.cucumber.java.en.*;
-import pages.MMT_HomePage;
-import pages.MMT_LoginPage;
+import pages.AT_HomePage;
+import pages.AT_LoginPage;
 
-public class MMT_Login_SD {
+public class AT_SD_Login {
 
 	WebDriver driver;
-	MMT_LoginPage loginPage;
-	MMT_HomePage homePage;
+	AT_LoginPage loginPage;
+	AT_HomePage homePage;
 	
-	@Given("^User navigates to login page$")
-	public void user_navigates_to_login_page() {
-	    
-		driver = DriverFactory.getDriver();
-	}
+//	@Given("^User navigates to home page$")
+//	public void user_navigates_to_home_page() {
+//	    
+//		driver = DriverFactory.getDriver();
+//	}
 
 	@And("^User clicks on Sign In with Email button$")
 	public void user_clicks_on_sign_in_with_email_button() throws InterruptedException {
@@ -26,7 +26,7 @@ public class MMT_Login_SD {
 		Thread.sleep(2000);
 
 		if (loginPage == null) {
-		    loginPage = new MMT_LoginPage(driver);
+		    loginPage = new AT_LoginPage(driver);
 		}
 		loginPage.clickOnSignInByMailButton();
 		
@@ -77,8 +77,8 @@ public class MMT_Login_SD {
 	public void user_should_get_successfully_logged_in() {
 	    
 		//Verifying user has logged in
-		homePage = new MMT_HomePage(driver);
-		Assert.assertTrue(homePage.verifyUserOnHomePage().contains("You are viewing your personal profile"));
+		homePage = new AT_HomePage(driver);
+		Assert.assertTrue(loginPage.verifyUserOnHomePage().contains("You are viewing your personal profile"));
 
 	}
 }
