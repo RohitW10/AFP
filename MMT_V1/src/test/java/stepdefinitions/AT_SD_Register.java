@@ -1,17 +1,18 @@
 package stepdefinitions;
 
 import org.openqa.selenium.WebDriver;
-import org.testng.annotations.Listeners;
 
 import factory.DriverFactory;
 import io.cucumber.java.en.*;
 import pages.AT_HomePage;
+import setup.MySetup;
 
 public class AT_SD_Register {
 
 	WebDriver driver;
 	AT_HomePage homePage;
 
+	
 	@Given("^User navigates to home page$")
 	public void user_navigates_to_home_page() {
 

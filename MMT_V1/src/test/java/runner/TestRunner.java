@@ -14,6 +14,8 @@ import io.cucumber.testng.CucumberOptions;
 							    },
 				    monochrome = true
 )
+
+//@Listeners(ScreenshotListener.class)
 public class TestRunner extends AbstractTestNGCucumberTests{
 	
 	@Override

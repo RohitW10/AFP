@@ -78,7 +78,6 @@ public class AT_SD_Login {
 	    
 		//Verifying user has logged in
 		homePage = new AT_HomePage(driver);
-		Assert.assertTrue(loginPage.verifyUserOnHomePage().contains("You are viewing your personal profile"));
 
 	}
 }

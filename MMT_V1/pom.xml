@@ -26,13 +26,6 @@
 		<maven.compiler.plugin.version>3.12.1</maven.compiler.plugin.version>
 	</properties>
 
-	<repositories>
-		<repository>
-			<id>oracle-public-repo</id>
-			<url>https://maven.oracle.com</url>
-		</repository>
-	</repositories>
-
 
 	<dependencies>
 
@@ -48,7 +41,6 @@
 			<groupId>org.testng</groupId>
 			<artifactId>testng</artifactId>
 			<version>${testng.version}</version>
-			<scope>test</scope>
 		</dependency>
 
 		<!--junit.jupiter/junit-jupiter-api -->

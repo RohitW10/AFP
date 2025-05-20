@@ -3,14 +3,16 @@
 
 <suite name="Cucumber TestNG Suite" parallel="tests" thread-count="2">
 
-	<listeners>
+<!--	<listeners>
 		<listener class-name="listeners.ScreenshotListener" />
-	</listeners>
+	</listeners>-->
 
-	<test name="Run AT_Register Feature">
+	<test name="RunCucumberTests">
 		<classes>
-			<class name="runner.TestNGRunner" />
+			<class name="runner.TestRunner" />
+			<class name="tests.DebugTest" />
 		</classes>
 	</test>
 
 </suite>
+
