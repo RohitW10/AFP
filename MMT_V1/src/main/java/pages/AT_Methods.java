@@ -1,6 +1,5 @@
 package pages;
 
-import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.util.Date;
 import java.util.List;
@@ -86,6 +85,7 @@ public class AT_Methods {
 		driver.manage().window().maximize();
 		driver.manage().window().minimize();
 		
+		//test line
 		
 	}
 }
