@@ -86,6 +86,7 @@ public class AT_Methods {
 		driver.manage().window().minimize();
 		
 		//test line
+		//test line 2
 		
 	}
 }
