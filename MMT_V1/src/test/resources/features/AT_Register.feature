@@ -18,5 +18,5 @@ Feature: Register functionality
 
 Examples:
 |name				|email address				|title|password  |day|month|year|first name|last name|company|address|address2|country|state|city|zip code|mobile no|
-|TestQA0011	|testqa0011@ymail.com	|Mr		|Testqa0011|1  |1	   |2021|TestQA0011|Automation|Micro|Seventh Avenue|Lower Town|United States|New York|New York|452781|12092981|
+|TestQA0012	|testqa0012@ymail.com	|Mr		|Testqa0012|1  |1	   |2021|TestQA0011|Automation|Micro|Seventh Avenue|Lower Town|United States|New York|New York|452781|12092981|
 

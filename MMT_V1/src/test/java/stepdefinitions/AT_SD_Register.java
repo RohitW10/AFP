@@ -5,12 +5,14 @@ import org.openqa.selenium.WebDriver;
 import factory.DriverFactory;
 import io.cucumber.java.en.*;
 import pages.AT_HomePage;
+import pages.AT_LoginPage;
 import setup.MySetup;
 
 public class AT_SD_Register {
 
 	WebDriver driver;
 	AT_HomePage homePage;
+	AT_LoginPage loginPage;
 
 	
 	@Given("^User navigates to home page$")
@@ -23,6 +25,7 @@ public class AT_SD_Register {
 	public void home_page_is_accessed_successfully() {
 
 		homePage = new AT_HomePage(driver);
+		loginPage = new AT_LoginPage(driver);
 		homePage.verifyUserOnHomePage();
 
 	}

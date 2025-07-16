@@ -6,7 +6,7 @@ import org.testng.annotations.DataProvider;
 import io.cucumber.testng.AbstractTestNGCucumberTests;
 import io.cucumber.testng.CucumberOptions;
 
-@CucumberOptions(features="src/test/resources/features/AT_Register.feature",
+@CucumberOptions(features="src/test/resources/features/AT_Login.feature",
 				 glue={"stepdefinitions","setup"},
 				 plugin = {"pretty",
 							"html:target/cucumber-reports.html",

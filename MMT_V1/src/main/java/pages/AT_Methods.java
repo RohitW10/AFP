@@ -1,7 +1,10 @@
 package pages;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.time.Duration;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
@@ -16,8 +19,16 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 public class AT_Methods {
 
-	public void testMethod() {
+	public void testMethod() throws NullPointerException {
 		WebDriver driver = new ChromeDriver();
+		
+		WebElement  el = driver.findElement(By.id("name"));
+		el.clear();
+		el.click();
+		el.sendKeys("test");
+		el.isSelected();
+		el.isDisplayed();
+		el.isEnabled();
 		
 		driver.findElement(By.id("name"));
 		driver.findElement(By.name("name"));
@@ -28,7 +39,8 @@ public class AT_Methods {
 		driver.findElement(By.cssSelector("input[type = name ]"));
 		driver.findElement(By.xpath("//input[@type = name ]"));
 
-		List<WebElement> list = driver.findElements(By.id("name"));
+		List<WebElement> list = driver.findElements(By.id("name")); 
+		Iterator<WebElement> it = list.iterator();
 		driver.get("https://www.google.co.in");
 		driver.getCurrentUrl();
 		driver.getPageSource();
@@ -84,9 +96,6 @@ public class AT_Methods {
 		driver.manage().window().fullscreen();
 		driver.manage().window().maximize();
 		driver.manage().window().minimize();
-		
-		//test line
-		//test line 2
-		
+				
 	}
 }

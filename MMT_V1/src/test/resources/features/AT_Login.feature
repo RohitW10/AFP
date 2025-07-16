@@ -1,15 +1,58 @@
 Feature: Login functionality
 
-Scenario Outline: User login with valid credentials
+Scenario Outline: User login with valid email id & valid password
 Given User navigates to home page
-When User clicks on Sign In with Email button
-And User enters valid email address <username> into email field
-And User clicks on Continue
+And Home Page is accessed successfully
+When User clicks on Signup / Login with Email button
+And Verify "Login to your account" message is visible
+And User enters valid email address <email> into email field
 And User enters valid password <password> into password field
-And User clicks on Continue
 And User clicks on Login button
-And User enters received OTP and clicks Login
 Then User should get successfully logged in
+
 Examples:
-|username								|password	|
-|rohit999waingankar@gmail.com	|MMTitb@62644		|
+|email								|password	 |
+|testqa0012@ymail.com	|Testqa0012|
+
+
+Scenario: User login with invalid email id & valid password
+Given User navigates to home page
+And Home Page is accessed successfully
+When User clicks on Signup / Login In with Email button
+And Verify "Login to your account" message is visible
+And User enters invalid email address <email> into email field
+And User enters valid password <password> into password field
+And User clicks on Login button
+Then User should view "Your email or password is incorrect!" error message
+
+Examples:
+|email									|password	 |
+|testqa0012345@ymail.com	|Testqa0012|
+
+Scenario: User login with valid email id & invalid password
+Given User navigates to home page
+And Home Page is accessed successfully
+When User clicks on Signup / Login with Email button
+And Verify "Login to your account" message is visible
+And User enters valid email address <email> into email field
+And User enters invalid password <password> into password field
+And User clicks on Login button
+Then User should view "Your email or password is incorrect!" error message
+
+Examples:
+|email								|password	 		|
+|testqa0012@ymail.com	|Testqa0012345|
+
+Scenario: User login with invalid email id & invalid password
+Given User navigates to home page
+And Home Page is accessed successfully
+When User clicks on Signup / Login with Email button
+And Verify "Login to your account" message is visible
+And User enters invalid email address <email> into email field
+And User enters invalid password <password> into password field
+And User clicks on Login button
+Then User should view "Your email or password is incorrect!" error message
+
+Examples:
+|email								|password	 		|
+|testqa0012345@ymail.com	|Testqa0012345|

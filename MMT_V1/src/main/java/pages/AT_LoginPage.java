@@ -4,6 +4,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.Assert;
 
 import utils.CommonUtils;
 import utils.ElementUtils;
@@ -20,44 +21,67 @@ public class AT_LoginPage {
 		elementUtils = new ElementUtils(driver);
 	}
 	
-	@FindBy(xpath = "//img[@data-cy = 'signInByMailButton']")
-	private WebElement mailButton;
+	@FindBy(xpath="//a[contains(text(), 'Signup') or contains(text() , 'Login')]")
+	private WebElement signUpLoginButton;
 	
-	@FindBy(xpath="//input[@data-cy = 'userName']")
-	private WebElement emailField;
+	@FindBy(xpath="//div[@class = 'col-sm-4']//div[@class = 'login-form']//h2[contains(text(), 'Login')]")
+	private WebElement loginText;
+
+	@FindBy(xpath = "//input[@data-qa = 'login-email']")
+	private WebElement loginEmail;
 	
-	@FindBy(xpath="//button[@data-cy = 'continueBtn']")
-	private WebElement continueButton;
+	@FindBy(xpath = "//input[@data-qa = 'login-password']")
+	private WebElement loginPassword;
 	
-	@FindBy(xpath="//input[@data-cy = 'password']")
-	private WebElement passwordField;
-	
-	@FindBy(xpath="//button[@data-cy = 'login']")
+	@FindBy(xpath="//button[@data-qa = 'login-button']")
 	private WebElement loginButton;
+	
+	@FindBy(xpath = "//ul[contains(@class,'navbar-nav')]/li[a[contains(text(), 'Logged in as')]]")
+	private WebElement loggedinText;
+	
+	@FindBy(xpath = "//p[text() = 'Your email or password is incorrect!']")
+	private WebElement loginErrorText;
 	
 	public void clickOnSignInByMailButton()
 	{
-		elementUtils.clickOnElement(mailButton, CommonUtils.EXPLICIT_WAIT_BASIC_TIME);
+		elementUtils.clickOnElement(signUpLoginButton, CommonUtils.EXPLICIT_WAIT_BASIC_TIME);
+	}
+	
+	public void verifyLoginMessage(String expectedLoginText)
+	{
+//		String expectedLoginText = "Login to your account";
+		String actualLoginText = elementUtils.getTextFromElement(loginText, CommonUtils.EXPLICIT_WAIT_BASIC_TIME);
+		Assert.assertEquals(actualLoginText, expectedLoginText);
 	}
 	
 	public void enterEmailAddress(String emailAddress)
 	{
-		elementUtils.typeTextIntoElement(emailField, emailAddress, CommonUtils.EXPLICIT_WAIT_BASIC_TIME);
-	}
-	
-	public void clickOnContinue()
-	{
-		elementUtils.clickOnElement(continueButton, CommonUtils.EXPLICIT_WAIT_BASIC_TIME);
+		elementUtils.typeTextIntoElement(loginEmail, emailAddress, CommonUtils.EXPLICIT_WAIT_BASIC_TIME);
 	}
 	
 	public void enterPassword(String password)
 	{
-		elementUtils.typeTextIntoElement(passwordField, password, CommonUtils.EXPLICIT_WAIT_BASIC_TIME);
+		elementUtils.typeTextIntoElement(loginPassword, password, CommonUtils.EXPLICIT_WAIT_BASIC_TIME);
 	}
 	
 	public void clickOnLoginButton()
 	{
 		elementUtils.clickOnElement(loginButton, CommonUtils.EXPLICIT_WAIT_BASIC_TIME);
 	}
+	
+	public void verifyLoggedinMessage(String expectedLoginText)
+	{
+//		String expectedLoginText = "Logged in as";
+		String actualLoginText = elementUtils.getTextFromElement(loggedinText, CommonUtils.EXPLICIT_WAIT_BASIC_TIME);
+		Assert.assertEquals(actualLoginText, expectedLoginText);
+	}
+	
+	public void verifyLoginErrorMessage(String expectedLoginErrorText)
+	{
+//		String expectedLoginText = "Logged in as";
+		String actualLoginErrorText = elementUtils.getTextFromElement(loginErrorText, CommonUtils.EXPLICIT_WAIT_BASIC_TIME);
+		Assert.assertEquals(actualLoginErrorText, expectedLoginErrorText);
+	}
+	
 	
 }
