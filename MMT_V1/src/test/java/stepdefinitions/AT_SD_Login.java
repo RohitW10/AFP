@@ -24,6 +24,10 @@ public class AT_SD_Login {
 
 //		Thread.sleep(2000);
 
+		if (driver == null) {
+	        driver = DriverFactory.getDriver(); 
+		}
+		
 		if (loginPage == null) {
 			loginPage = new AT_LoginPage(driver);
 		}
@@ -41,14 +45,14 @@ public class AT_SD_Login {
 	public void user_enters_valid_email_address_into_email_field(String emailAddress) throws InterruptedException {
 
 		loginPage.enterEmailAddress(emailAddress);
-		Thread.sleep(5000);
+//		Thread.sleep(5000);
 	}
 
 	@And("^User enters valid password (.+) into password field$")
 	public void user_enters_valid_password_into_password_field(String password) throws InterruptedException {
 
 		loginPage.enterPassword(password);
-		Thread.sleep(5000);
+//		Thread.sleep(5000);
 
 	}
 
@@ -56,10 +60,10 @@ public class AT_SD_Login {
 	public void user_clicks_on_login_button() throws InterruptedException {
 
 		loginPage.clickOnLoginButton();
-		Thread.sleep(5000);
+//		Thread.sleep(5000);
 	}
 	
-	@And("User enters invalid email address (.+) into email field")
+	@And("^User enters invalid email address (.+) into email field$")
 	public void user_enters_invalid_email_address_into_email_field(String invalidEmail) {
 	    
 		loginPage.enterEmailAddress(invalidEmail);
@@ -71,16 +75,16 @@ public class AT_SD_Login {
 		loginPage.verifyLoginErrorMessage(LoginErrorText);
 	}
 	
-	@And("User enters invalid password (.+) into password field")
+	@And("^User enters invalid password (.+) into password field$")
 	public void user_enters_invalid_password_into_password_field(String invalidPassword) {
 	    
 		loginPage.enterPassword(invalidPassword);
 	}
 
 	@Then("^User should get successfully logged in$")
-	public void user_should_get_successfully_logged_in(String LoggedinText) {
+	public void user_should_get_successfully_logged_in() {
 	    
-		loginPage.verifyLoggedinMessage(LoggedinText);
+		loginPage.verifyLoggedinMessage();
 		
 		//Verifying user has logged in
 		homePage = new AT_HomePage(driver);

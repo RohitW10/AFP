@@ -6,7 +6,7 @@ import factory.DriverFactory;
 import io.cucumber.java.en.*;
 import pages.AT_HomePage;
 import pages.AT_LoginPage;
-import setup.MySetup;
+import setup.Hooks;
 
 public class AT_SD_Register {
 

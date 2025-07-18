@@ -24,7 +24,7 @@ public class AT_LoginPage {
 	@FindBy(xpath="//a[contains(text(), 'Signup') or contains(text() , 'Login')]")
 	private WebElement signUpLoginButton;
 	
-	@FindBy(xpath="//div[@class = 'col-sm-4']//div[@class = 'login-form']//h2[contains(text(), 'Login')]")
+	@FindBy(xpath="//div[@class = 'col-sm-4 col-sm-offset-1']//div[@class = 'login-form']//h2[contains(text(), 'Login')]")
 	private WebElement loginText;
 
 	@FindBy(xpath = "//input[@data-qa = 'login-email']")
@@ -69,9 +69,9 @@ public class AT_LoginPage {
 		elementUtils.clickOnElement(loginButton, CommonUtils.EXPLICIT_WAIT_BASIC_TIME);
 	}
 	
-	public void verifyLoggedinMessage(String expectedLoginText)
+	public void verifyLoggedinMessage()
 	{
-//		String expectedLoginText = "Logged in as";
+		String expectedLoginText = "Logged in as TestQA0012";
 		String actualLoginText = elementUtils.getTextFromElement(loggedinText, CommonUtils.EXPLICIT_WAIT_BASIC_TIME);
 		Assert.assertEquals(actualLoginText, expectedLoginText);
 	}
